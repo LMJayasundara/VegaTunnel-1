@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
+
+        <link rel="stylesheet" href="./adminlte.min.css" />
+        <link rel="stylesheet" href="./tunnel.css" />
+    </head>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addNewUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Add New User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group"><label>User Name</label><input type="text" class="form-control" id="newUserusername" placeholder="Enter username" /></div>
+                        <div class="form-group"><label>Email</label><input type="email" class="form-control" id="newUseruseremail" placeholder="Enter email" /></div>
+                        <div class="form-group"><label>Password</label><input type="password" class="form-control" id="newUserpassword" placeholder="Enter password" /></div>
+                        <div class="form-group"><label>Confirm Password</label><input type="password" class="form-control" id="newUserconfirm-password" placeholder="Confirm your password" /></div>
+                        <div class="form-group">
+                            <label>Role</label>
+                            <select class="form-control" id="newUserole">
+                                <option value="User">User</option>
+                                <option value="Admin">Admin</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Add User</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+
+    <body class="layout-top-nav" style="height: auto;">
+        <div class="wrapper">
+            <!-- nav bar -->
+            <nav id="navbar_top" class="navbar navbar-light bg-dark">
+                <a class="navbar-brand" style="color: white;">
+                    <img src="./images/pngegg.png" alt="Logo" width="30" height="30" class="d-inline-block align-top" />
+                    ChargeNET Tunnel
+                </a>
+                <div class="dropdown nav-link">
+                    <a style="color: white;">shenuka heshan&nbsp;<i class="fa fa-user-circle"></i></a>
+                    <div class="dropdown-content dropdown-menu-right">
+                        <a href="./master.html">Home&nbsp;<i class="fas float-right">&#xf015;</i></a>
+                        <a href="#" type="button" data-toggle="modal" data-target="#logoutbtn" data-backdrop="static" data-keyboard="false">Log Out&nbsp;<i class="fas float-right">&#xf2f5;</i></a>
+                        <a href="#">Version&nbsp;<i class="fas float-right">&#xf06a;</i></a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="py-3">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-7 col-lg-8">
+                            <div class="card" id="user-list-card">
+                                <div class="card-header" style="background-color: rgba(0, 0, 0, 0.03);">
+                                    <h3 class="card-title" id="user-management-title">
+                                        User Management
+                                    </h3>
+                                    <div class="card-tools">
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search" id="search-user" />
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-default">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                            <button type="button" class="btn btn-info btn-sm ml-3" data-toggle="modal" data-target="#addNewUserModal" data-backdrop="static" data-keyboard="false">
+                                                <i class="fa fa-plus"></i>&nbsp;Add new User
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body table-responsive p-0">
+                                    <table class="table table-head-fixed">
+                                        <thead style="border: none;">
+                                            <tr>
+                                                <th>
+                                                    <div class="card-body py-0" style="border: none;">
+                                                        <div class="row">
+                                                            <div class="col">User ID</div>
+                                                            <div class="col">User Name</div>
+                                                            <div class="col">Status</div>
+                                                            <div class="col-1"></div>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td id="user-list-ul"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- strat text -->
+                        <div class="col-md-5 col-lg-4" id="start-text" style="align-items: center; justify-content: center;">
+                            <img src="./images/user.png" alt="image" style="opacity: 0.2; width: 100%;" />
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                                <h2 class="text-center" id="user-card-text-1">Select User</h2>
+                                <p class="text-center" id="user-card-text-2">User details will appere here.</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5 col-lg-4" id="card-for-user" style="display: none;">
+                            <div class="card" id="user-card-for-style">
+                                <div class="card-header" style="background-color: rgba(0, 0, 0, 0.03);">
+                                    <h3 class="card-title" id="user-card-title"></h3>
+                                    <div class="card-tools">
+                                        <button type="button" id="user-card-close" class="btn btn-tool">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body" id="card-body-edit-user"></div>
+                                <div class="modal-footer" id="card-footer-edit-user">
+                                    <button type="button" class="btn btn-success btn-block">
+                                        Save changes
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-block" data-dismiss="modal">
+                                        Discard changes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5 col-lg-4" id="card-for-device-search" style="display: none;">
+                            <div class="card" id="user-card-for-style">
+                                <div class="card-header" style="background-color: rgba(0, 0, 0, 0.03);">
+                                    <h3 class="card-title" id="user-editDevice-title"></h3>
+                                    <div class="card-tools">
+                                        <button type="button" id="user-cardDevice-close" class="btn btn-tool">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body" id="card-body-edit-Device">
+                                    <div style="height: 8%;">
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search" id="search-device-checkbox" />
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-default">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="overflow-y: auto; height: 92%;">
+                                        <table class="table table-borderless; text-align: center;">
+                                            <tr>
+                                                <th style="width: 20%;"></th>
+                                                <th style="width: 40%;">
+                                                    Device Name
+                                                </th>
+                                                <th style="width: 40%;">
+                                                    Device ID
+                                                </th>
+                                            </tr>
+                                            <tbody id="device-tablebody-checkbox"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer" id="card-footer-editDevice-user">
+                                    <button type="button" class="btn btn-success btn-block">
+                                        Save changes
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-block" data-dismiss="modal">
+                                        Discard changes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <script src="user.js"></script>
+    </body>
+</html>

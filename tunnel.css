@@ -1,0 +1,80 @@
+.modal-open{
+    overflow: auto;
+    padding-right:0 !important;
+}
+
+.selectDD {
+    width: 100px;
+    padding-left: 2ex;
+    margin-right: 2ex;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+}
+
+@media only screen and (max-width: 600px) {
+    .col-4 {
+        font-size: 0.8em;
+    }
+}
+
+#start-text {
+    display: flex;
+}
+
+#user-list-card {
+    height: 87vh;
+}
+
+.changeToPointer
+{
+    cursor: pointer;
+}
+#Device-list-card,
+#card-for-option-style,
+#user-card-for-style,
+#user-list-card,
+#start-text {
+    height: 87vh;
+}
+
+@media only screen and (max-width: 532px) {
+    #user-management-title{
+        margin-bottom: 10px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #Device-list-card, 
+    #user-list-card{
+        height: 50vh;
+    }
+    #card-for-option-style, #start-text,#user-card-for-style {
+        height: 100%;
+    }
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+.dropdown-content a {
+  color: rgb(0, 0, 0);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+input[type=checkbox] {
+    transform: scale(1.5);
+}
