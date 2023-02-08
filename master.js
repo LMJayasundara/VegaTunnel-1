@@ -143,9 +143,65 @@
                               RebootTitleBtn2.innerHTML = "FTP " + i;
 
                               var RebootBodyBtn2 = document.getElementById("Terminal-FTP-Display-body");
+                              //============================================================================================================================================
+                              //============================================================================================================================================
                               RebootBodyBtn2.innerHTML = "";
                               RebootBodyBtn2.style.height = "80vh";
-                              //RebootBody.innerHTML = "Are you sure You want to Reboot this Device?";
+
+                              //top bar start
+                              let breadcrumbContainer = document.createElement("div");
+                              breadcrumbContainer.classList.add("container-m-nx", "container-m-ny", "bg-lightest", "mb-3");
+
+                              let breadcrumbList = document.createElement("ol");
+                              breadcrumbList.classList.add("breadcrumb", "text-big", "container-p-x", "py-3", "m-0");
+
+                              let homeItem = document.createElement("li");
+                              homeItem.classList.add("breadcrumb-item");
+
+                              let homeLink = document.createElement("a");
+                              homeLink.innerText = "home";
+
+                              let activeItem = document.createElement("li");
+                              activeItem.classList.add("breadcrumb-item", "active");
+                              activeItem.innerText = "site";
+
+                              homeItem.appendChild(homeLink);
+                              breadcrumbList.appendChild(homeItem);
+                              breadcrumbList.appendChild(activeItem);
+                              breadcrumbContainer.appendChild(breadcrumbList);
+
+                              RebootBodyBtn2.appendChild(breadcrumbContainer);
+                              //top bar end
+
+                              let fileSystem = [
+                                { name: "new folder", type: "folder" },
+                                { name: "code.py", type: "file" },
+                                { name: "index.html", type: "file" },
+                                { name: "new folder (2)", type: "folder" },
+                                { name: "new", type: "folder" },
+                              ];
+                              
+                              let container = document.createElement("div");
+                              container.classList.add("file-manager-container", "file-manager-col-view");
+                              
+                              fileSystem.forEach(function(item) {
+                                let fileItem = document.createElement("div");
+                                fileItem.classList.add("file-item");
+                              
+                                let fileItemIcon = document.createElement("div");
+                                fileItemIcon.classList.add("file-item-icon", "far", (item.type === "folder" ? "fa-folder" : "fa-file"), "text-secondary");
+                              
+                                let fileItemName = document.createElement("a");
+                                fileItemName.classList.add("file-item-name");
+                                fileItemName.innerText = item.name;
+                              
+                                fileItem.appendChild(fileItemIcon);
+                                fileItem.appendChild(fileItemName);
+                                container.appendChild(fileItem);
+                              });
+                              
+                              RebootBodyBtn2.appendChild(container);
+                              
 
                               btn2.setAttribute("data-toggle", "modal");
                               btn2.setAttribute("data-target", "#Terminal-FTP-Display");

@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         text1.innerHTML = "Declined";
 
         var text2 = document.getElementById("user-card-text-2");
-        text2.innerHTML = "Can't change Admin Access";
+        text2.innerHTML = "Can't Edit Admin";
 
         //show start text
         var text = document.getElementById("start-text");
