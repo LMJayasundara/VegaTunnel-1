@@ -38,7 +38,7 @@ function createFileSystemBody(Filename) {
   if (path == "") {
     p.innerHTML = "Home";
   } else {
-    p.innerHTML = path + " / " + Filename;
+    p.innerHTML = path + "/" + Filename;
   }
 
   console.log(document.getElementById("path").innerHTML);
@@ -94,6 +94,13 @@ function createFileSystemBody(Filename) {
 
         createFileSystemBody(item.name);
       };
+    }else{
+
+        fileItem.onclick = function () {
+            var downloadInputVal = document.getElementById("downloadInputVal");
+            var value = document.getElementById("path").innerHTML + "/" + item.name;
+            downloadInputVal.value = value;
+          };
     }
 
     let fileItemIcon = document.createElement("div");
@@ -117,6 +124,12 @@ function createFileSystemBody(Filename) {
 
   RebootBodyBtn2.appendChild(container);
   console.log(v);
+
+
+  var downloadInputVal = document.getElementById("downloadInputVal");
+  downloadInputVal.value = document.getElementById("path").innerHTML;
+
+
 }
 
 //========================go back==========================================================================================
@@ -145,7 +158,7 @@ function createFileSystemBodyGoback(CurrentPath) {
     words[words.length - 1] = words[words.length - 1].trim();
 
     // Join the remaining words back into a string using forward slash as the delimiter
-    CurrentPath = words.join("/ ");
+    CurrentPath = words.join("/");
     console.log(CurrentPath);
   }
 
@@ -211,6 +224,13 @@ function createFileSystemBodyGoback(CurrentPath) {
 
         createFileSystemBody(item.name);
       };
+    }else{
+
+        fileItem.onclick = function () {
+            var downloadInputVal = document.getElementById("downloadInputVal");
+            var value = document.getElementById("path").innerHTML + "/" + item.name;
+            downloadInputVal.value = value;
+          };
     }
 
     let fileItemIcon = document.createElement("div");
@@ -234,6 +254,9 @@ function createFileSystemBodyGoback(CurrentPath) {
 
   RebootBodyBtn2.appendChild(container);
   console.log(v);
+
+  var downloadInputVal = document.getElementById("downloadInputVal");
+  downloadInputVal.value = document.getElementById("path").innerHTML;
 }
 
 //===============================================================================================
@@ -351,7 +374,7 @@ document.addEventListener("DOMContentLoaded", function () {
           );
           RebootBodyBtn1.innerHTML = "";
           RebootBodyBtn1.style.height = "75vh";
-          
+
           var TerminalFTPDisplayfooter = document.getElementById(
             "Terminal-FTP-Display-footer"
           );
@@ -387,14 +410,51 @@ document.addEventListener("DOMContentLoaded", function () {
           //============================================================================================================================================
           //============================================================================================================================================
           RebootBodyBtn2.innerHTML = "";
-          RebootBodyBtn2.style.height = "75vh";
+          RebootBodyBtn2.style.height = "70vh";
 
           var TerminalFTPDisplayfooter = document.getElementById(
             "Terminal-FTP-Display-footer"
           );
           TerminalFTPDisplayfooter.innerHTML = "";
 
-          //upload button create
+          //create progress bar
+          // Create the necessary elements
+          const progressDiv = document.createElement("div");
+          const progressBarDiv = document.createElement("div");
+
+          // Set the attributes for the progress and progress bar divs
+          progressDiv.setAttribute("class", "progress");
+          progressDiv.setAttribute("style", "width: 100%;");
+          progressBarDiv.setAttribute("class", "progress-bar bg-success");
+          progressBarDiv.setAttribute("style", "width: 90%;");
+          progressBarDiv.textContent = "90%";
+
+          // Add the progress bar div to the progress div
+          progressDiv.appendChild(progressBarDiv);
+
+          //upload button create ---------------
+          // Create the necessary elements
+          const inputGroup = document.createElement("div");
+          const inputField = document.createElement("input");
+          const inputGroupAppend = document.createElement("div");
+          const downloadButton = document.createElement("button");
+
+          // Set the attributes for the input field and download button
+          inputField.setAttribute("type", "text");
+          inputField.setAttribute("class", "form-control");
+          inputField.setAttribute("id", "downloadInputVal")
+          downloadButton.classList.add("btn", "btn-success", "ml-2");
+          downloadButton.setAttribute("type", "button");
+          downloadButton.textContent = "Download";
+
+          // Add the download button to the input group append div
+          inputGroupAppend.appendChild(downloadButton);
+
+          // Add the input field and input group append div to the input group
+          inputGroup.appendChild(inputField);
+          inputGroup.appendChild(inputGroupAppend);
+          inputGroup.setAttribute("class", "input-group");
+
           // create div with class input-group
           const inputGroupDiv = document.createElement("div");
           inputGroupDiv.classList.add("input-group");
@@ -433,6 +493,8 @@ document.addEventListener("DOMContentLoaded", function () {
           // append button to div with class input-group
           inputGroupDiv.appendChild(sendButton);
 
+          TerminalFTPDisplayfooter.appendChild(progressDiv);
+          TerminalFTPDisplayfooter.appendChild(inputGroup);
           TerminalFTPDisplayfooter.appendChild(inputGroupDiv);
 
           //top bar end
@@ -470,7 +532,7 @@ document.addEventListener("DOMContentLoaded", function () {
           );
           RebootBodyBtn3.innerHTML = "";
           RebootBodyBtn3.style.height = "75vh";
-          
+
           var TerminalFTPDisplayfooter = document.getElementById(
             "Terminal-FTP-Display-footer"
           );
