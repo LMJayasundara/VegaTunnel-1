@@ -665,19 +665,16 @@ document.addEventListener("DOMContentLoaded", function () {
     aTag1.classList.add("dropdown-item", "font-weight-bold", "font-italic");
     aTag1.innerHTML = "Edit&nbsp;";
 
+     //editbtn
     aTag1.onclick = function () {
       console.log("edit" + i);
-      //editbtn
-      //edit-device-name
 
       aTag1.setAttribute("data-backdrop", "static");
       aTag1.setAttribute("data-keyboard", "false");
 
-      var deleteCardTitle = document.getElementById("edit-device");
-      deleteCardTitle.innerHTML = "device id " + i;
+      document.getElementById("edit-device").innerHTML = "device id " + i;
 
-      var input = document.getElementById("edit-device-name");
-      input.value = i;
+      document.getElementById("edit-device-name").value = i;
 
       //display modal
       aTag1.setAttribute("data-toggle", "modal");
@@ -688,15 +685,14 @@ document.addEventListener("DOMContentLoaded", function () {
     aTag2.classList.add("dropdown-item", "font-weight-bold", "font-italic");
     aTag2.innerHTML = "Delete&nbsp;";
 
+    // deletebtn
     aTag2.onclick = function () {
       console.log("delete" + i);
-      // deletebtn
 
       aTag2.setAttribute("data-backdrop", "static");
       aTag2.setAttribute("data-keyboard", "false");
 
-      var deleteCardTitle = document.getElementById("delete-device");
-      deleteCardTitle.innerHTML = "device id " + i;
+      document.getElementById("delete-device").innerHTML = "device id " + i;
 
       //display modal
       aTag2.setAttribute("data-toggle", "modal");
@@ -740,7 +736,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// validations start
+// validations-add new device start
 
 document.getElementById("devicename").addEventListener("input", function () {
   var deviceName = this.value;
@@ -788,8 +784,7 @@ document.getElementById("addbutton").addEventListener("click", function () {
     //submit form
   }
 });
-
-// validation end
+// validations-add new device end
 
 //card remove button - strat
 document.getElementById("clsbtn").addEventListener("click", function () {
@@ -799,48 +794,48 @@ document.getElementById("clsbtn").addEventListener("click", function () {
   document.getElementById("card-for-option").style.display = "none";
   document.getElementById("start-text").style.display = "flex";
   document.getElementById("text-1").innerHTML = "Select your Device";
-  document.getElementById("text-2").innerHTML =
-    "Device options will appear here.";
+  document.getElementById("text-2").innerHTML = "Device options will appear here.";
 });
 //card remove button - end
 
 //secrch from search box - strat
-$("#search").on("keyup", function () {
-  var searchvalue = $("#search").val().toLowerCase();
-  var conceptName = $("#selectDD").find(":selected").val();
-  var ddvalue = conceptName == 2 ? "online" : conceptName == 3 ? "offline" : "";
-
-  $("#list .statusclass").filter(function () {
-    $(this)
-      .closest("ul")
-      .toggle($(this).text().toLowerCase().indexOf(ddvalue) > -1);
-  });
-
-  if (searchvalue !== "") {
-    $("#list ul:visible").filter(function () {
-      $(this).toggle($(this).text().toLowerCase().indexOf(searchvalue) > -1);
+document.getElementById("search").addEventListener("keyup", function() {
+    var searchvalue = document.getElementById("search").value.toLowerCase();
+    var conceptName = document.querySelector("#selectDD option:checked").value;
+    var ddvalue = conceptName === "2" ? "online" : conceptName === "3" ? "offline" : "";
+  
+    var statusClasses = document.querySelectorAll("#list .statusclass:not([style*='display: none'])");
+    statusClasses.forEach(function(statusClass) {
+      var ul = statusClass.closest("ul");
+      ul.style.display = statusClass.textContent.toLowerCase().indexOf(ddvalue) > -1 ? "" : "none";
     });
-  }
-});
+  
+    var visibleUls = document.querySelectorAll("#list ul:not([style*='display: none'])");
+    visibleUls.forEach(function(ul) {
+      ul.style.display = ul.textContent.toLowerCase().indexOf(searchvalue) > -1 ? "" : "none";
+    });
+  });
+  
 //secrch from search box - end
 
 //search from dropdown - start
-$("#selectDD").change(function () {
-  var searchvalue = $("#search").val().toLowerCase();
-  var conceptName = $("#selectDD").find(":selected").val();
-
-  $("#list ul").filter(function () {
-    $(this).toggle($(this).text().toLowerCase().indexOf(searchvalue) > -1);
-  });
-
-  if (conceptName !== 1) {
-    var ddvalue =
-      conceptName == 2 ? "online" : conceptName == 3 ? "offline" : "";
-    $("#list .statusclass:visible").filter(function () {
-      $(this)
-        .closest("ul")
-        .toggle($(this).text().toLowerCase().indexOf(ddvalue) > -1);
+document.getElementById("selectDD").addEventListener("change", function() {
+    var searchvalue = document.getElementById("search").value.toLowerCase();
+    var conceptName = document.querySelector("#selectDD option:checked").value;
+    var list = document.getElementById("list");
+  
+    var uls = list.querySelectorAll("ul");
+    uls.forEach(function(ul) {
+      ul.style.display = ul.textContent.toLowerCase().indexOf(searchvalue) > -1 ? "" : "none";
     });
-  }
-});
+  
+    if (conceptName !== "1") {
+      var ddvalue = conceptName === "2" ? "online" : conceptName === "3" ? "offline" : "";
+      var statusClasses = list.querySelectorAll(".statusclass:not([style*='display: none'])");
+      statusClasses.forEach(function(statusClass) {
+        var ul = statusClass.closest("ul");
+        ul.style.display = statusClass.textContent.toLowerCase().indexOf(ddvalue) > -1 ? "" : "none";
+      });
+    }
+  });
 //search from dropdown - end
