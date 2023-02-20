@@ -433,7 +433,7 @@ document.addEventListener("DOMContentLoaded", function () {
           // append button to div with class input-group
           inputGroupDiv.appendChild(sendButton);
 
-          TerminalFTPDisplaybody.appendChild(inputGroupDiv);
+          TerminalFTPDisplayfooter.appendChild(inputGroupDiv);
 
           //top bar end
 
