@@ -351,7 +351,11 @@ document.addEventListener("DOMContentLoaded", function () {
           );
           RebootBodyBtn1.innerHTML = "";
           RebootBodyBtn1.style.height = "80vh";
-          //RebootBody.innerHTML = "Are you sure You want to Reboot this Device?";
+          
+          var TerminalFTPDisplayfooter = document.getElementById(
+            "Terminal-FTP-Display-footer"
+          );
+          TerminalFTPDisplayfooter.innerHTML = "";
 
           btn1.setAttribute("data-toggle", "modal");
           btn1.setAttribute("data-target", "#Terminal-FTP-Display");
@@ -385,10 +389,10 @@ document.addEventListener("DOMContentLoaded", function () {
           RebootBodyBtn2.innerHTML = "";
           RebootBodyBtn2.style.height = "80vh";
 
-          var TerminalFTPDisplaybody = document.getElementById(
+          var TerminalFTPDisplayfooter = document.getElementById(
             "Terminal-FTP-Display-footer"
           );
-          TerminalFTPDisplaybody.innerHTML = "";
+          TerminalFTPDisplayfooter.innerHTML = "";
 
           //upload button create
           // create div with class input-group
@@ -466,7 +470,11 @@ document.addEventListener("DOMContentLoaded", function () {
           );
           RebootBodyBtn3.innerHTML = "";
           RebootBodyBtn3.style.height = "80vh";
-          //RebootBody.innerHTML = "Are you sure You want to Reboot this Device?";
+          
+          var TerminalFTPDisplayfooter = document.getElementById(
+            "Terminal-FTP-Display-footer"
+          );
+          TerminalFTPDisplayfooter.innerHTML = "";
 
           btn3.setAttribute("data-toggle", "modal");
           btn3.setAttribute("data-target", "#Terminal-FTP-Display");
