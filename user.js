@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           const dropDownMenu = document.createElement("div");
           dropDownMenu.classList.add("dropdown-menu");
-          dropDownMenu.style.width = "23vh";
+          dropDownMenu.setAttribute("style", "min-width: 200px");
 
           const aTag1 = document.createElement("a");
           aTag1.classList.add("dropdown-item", "font-weight-bold", "font-italic");
@@ -115,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
               cardBody.innerHTML = "";
 
               var form = document.createElement("form");
+              form.setAttribute("style", "overflow-y: auto; height: 100%;");
 
               var formGroup1 = document.createElement("div");
               formGroup1.className = "form-group";

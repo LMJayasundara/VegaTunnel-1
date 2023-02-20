@@ -350,7 +350,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "Terminal-FTP-Display-body"
           );
           RebootBodyBtn1.innerHTML = "";
-          RebootBodyBtn1.style.height = "80vh";
+          RebootBodyBtn1.style.height = "75vh";
           
           var TerminalFTPDisplayfooter = document.getElementById(
             "Terminal-FTP-Display-footer"
@@ -387,7 +387,7 @@ document.addEventListener("DOMContentLoaded", function () {
           //============================================================================================================================================
           //============================================================================================================================================
           RebootBodyBtn2.innerHTML = "";
-          RebootBodyBtn2.style.height = "80vh";
+          RebootBodyBtn2.style.height = "75vh";
 
           var TerminalFTPDisplayfooter = document.getElementById(
             "Terminal-FTP-Display-footer"
@@ -469,7 +469,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "Terminal-FTP-Display-body"
           );
           RebootBodyBtn3.innerHTML = "";
-          RebootBodyBtn3.style.height = "80vh";
+          RebootBodyBtn3.style.height = "75vh";
           
           var TerminalFTPDisplayfooter = document.getElementById(
             "Terminal-FTP-Display-footer"
@@ -597,6 +597,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const dropDownMenu = document.createElement("div");
     dropDownMenu.classList.add("dropdown-menu");
+    dropDownMenu.setAttribute("style", "min-width: 200px");
 
     const aTag1 = document.createElement("a");
     aTag1.classList.add("dropdown-item", "font-weight-bold", "font-italic");

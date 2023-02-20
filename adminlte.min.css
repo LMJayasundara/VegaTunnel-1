@@ -24392,7 +24392,7 @@ body.text-sm .input-group-text {
 }
 .card {
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
 }
 .card.bg-dark .card-header {
     border-color: #383f45;
